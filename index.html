@@ -1,0 +1,67 @@
+<!--
+Date : 2017-09-19
+Author : Chinatsu Kawakami
+Version : 0.0.1 Initial commit
+-->
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+	<title>The Slot Game</title>
+	<style>
+	  .slot{
+            float:left;
+            width:150px;
+            text-align:center;
+            font-size:40px;
+	  }
+	</style>
+</head>
+<body>
+
+	<div class="slot">
+		<div id="slot0">0</div>
+		<input type='button' id='stop0' value='START'>
+	</div>
+    <div class="slot">
+		<div id="slot1">0</div>
+		<input type='button' id='stop1' value='STOP'>
+	</div>
+	<script type="text/javascript">
+
+		//funtion to make the slop run
+		//set the timer
+
+		
+         startSlot();
+
+         function startSlot(){
+           //Run Timer 
+
+           runSlot(0);
+           runSlot(1);
+        }
+          //0-9 numbers will be each slot 
+       
+
+             function runSlot(num){
+
+         	var slotValue = document.getElementById('slot'+num);
+                console.log(slotValue);
+          /*var timers = [num] = setTimeout{function(){
+               runSlot(num);
+           },400);*/
+          }
+
+    
+  
+
+		
+        
+
+        </script>
+</body>
+</html>
+
