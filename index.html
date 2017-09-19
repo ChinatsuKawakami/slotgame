@@ -1,7 +1,7 @@
 <!--
 Date : 2017-09-19
 Author : Chinatsu Kawakami
-Version : 0.0.1 Initial commit
+Version : 0.0.2 add fuction to start slot
 -->
 
 
@@ -34,7 +34,8 @@ Version : 0.0.1 Initial commit
 		//funtion to make the slop run
 		//set the timer
 
-		
+		var timers=[];
+
          startSlot();
 
          function startSlot(){
@@ -49,18 +50,21 @@ Version : 0.0.1 Initial commit
              function runSlot(num){
 
          	var slotValue = document.getElementById('slot'+num);
-                console.log(slotValue);
-          /*var timers = [num] = setTimeout{function(){
+
+         	if(slotValue.innerHTML<9)
+         	{
+                slotValue.innerHTML++;
+               
+         	}else{
+         		slotValue.innerHTML=0;
+         	}
+
+            //console.log(slotValue.innerHTML);
+            timers = [num] = setTimeout(function(){
                runSlot(num);
-           },400);*/
+           },400);
           }
-
-    
-  
-
-		
         
-
         </script>
 </body>
 </html>
