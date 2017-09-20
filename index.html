@@ -1,7 +1,8 @@
 <!--
 Date : 2017-09-19
+Modified:  2017-09-20
 Author : Chinatsu Kawakami
-Version : 0.0.2 add fuction to start slot
+Version : 0.0.3 add fuction to show score and to continue this game if the user won.
 -->
 
 
@@ -20,7 +21,9 @@ Version : 0.0.2 add fuction to start slot
 	</style>
 </head>
 <body>
-
+   
+   <div id='title'><h1>You have only one chance to do this Game!</h1></div>
+   <p>Your score:<span id="score">0</span></p>
 	<div class="slot">
 		<div id="slot0">0</div>
 		<input type='button' id='stop0' value='START'>
@@ -33,14 +36,30 @@ Version : 0.0.2 add fuction to start slot
 
 		//funtion to make the slop run
 		//set the timer
+        
+        //set values 
+		    var timers=[];
+        var results = [];
+        var stopCount = 0;
+        var score = 0;
 
-		var timers=[];
-
+        //register event 
+        document.getElementById('stop0').onclick = function(){
+          stopSlot(0);
+        }
+         document.getElementById('stop1').onclick = function(){
+          stopSlot(1);
+        }
+        
          startSlot();
 
          function startSlot(){
            //Run Timer 
-
+          //initialize
+           stopCount = 0;
+           timers = [];
+           results = [];
+           //start slot
            runSlot(0);
            runSlot(1);
         }
@@ -60,11 +79,53 @@ Version : 0.0.2 add fuction to start slot
          	}
 
             //console.log(slotValue.innerHTML);
-            timers = [num] = setTimeout(function(){
+            timers[num] = setTimeout(function(){
                runSlot(num);
            },400);
+          }//close runslot
+
+          function stopSlot(num){
+            //stop timer
+            clearTimeout(timers[num]);
+            results[num] = document.getElementById('slot'+num).innerHTML;
+           
+            stopCount++;
+
+            if(stopCount ==2)
+            {
+            checkResult();
           }
+
+          }//close stopSlot
         
+        function checkResult(){
+          //check the result
+          // alert("Run result function!");
+
+          if(results[0] == results[1]){
+            alert("You Won!");
+            score += 100;
+            updateScore();
+            
+       
+            //the user can continue to game
+            startSlot();
+          }else{
+             gameOver();
+            //alert('You lost game');
+          }
+        }
+
+        function gameOver(){
+          alert('GAME OVER');
+          //show the twitter button 
+
+        }
+
+        function updateScore(){
+         var target= document.getElementById('score');
+         target.innerHTML = score;
+        }
         </script>
 </body>
 </html>
