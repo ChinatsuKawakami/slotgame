@@ -2,7 +2,7 @@
 Date : 2017-09-19
 Modified:  2017-09-20
 Author : Chinatsu Kawakami
-Version : 0.0.4 add fuction to show score with twitter button.
+Version : 0.0.5 add immediate fuction and event to increment interval.
 -->
 
 
@@ -33,7 +33,7 @@ Version : 0.0.4 add fuction to show score with twitter button.
 		<input type='button' id='stop1' value='STOP'>
 	</div>
 	<script type="text/javascript">
-
+   (function(){
 		//funtion to make the slop run
 		//set the timer
         
@@ -42,6 +42,7 @@ Version : 0.0.4 add fuction to show score with twitter button.
         var results = [];
         var stopCount = 0;
         var score = 0;
+        var interval = 400;
 
         //register event 
         document.getElementById('stop0').onclick = function(){
@@ -81,7 +82,7 @@ Version : 0.0.4 add fuction to show score with twitter button.
             //console.log(slotValue.innerHTML);
             timers[num] = setTimeout(function(){
                runSlot(num);
-           },400);
+           },interval);
           }//close runslot
 
           function stopSlot(num){
@@ -105,8 +106,9 @@ Version : 0.0.4 add fuction to show score with twitter button.
           if(results[0] == results[1]){
             alert("You Won!");
             score += 100;
+            interval*=0.6;
             updateScore();
-            
+           
        
             //the user can continue to game
             startSlot();
@@ -137,6 +139,8 @@ Version : 0.0.4 add fuction to show score with twitter button.
 
        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         }
+
+      })();
         </script>
 </body>
 </html>
